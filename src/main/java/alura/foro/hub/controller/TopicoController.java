@@ -49,4 +49,18 @@ public class TopicoController {
         return ResponseEntity.ok(new DatosDetalleTopico(topico));
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity editarTopico(@PathVariable Long id, @RequestBody @Valid DatosActualizacionTopico datos) {
+        var optionalTopico = repository.findById(id);
+
+        if (optionalTopico.isPresent()) {
+            var topico = optionalTopico.get();
+            topico.actualizarInformacion(datos);
+            return ResponseEntity.ok(new DatosDetalleTopico(topico));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
 }

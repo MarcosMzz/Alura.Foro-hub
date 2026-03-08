@@ -41,4 +41,18 @@ public class Topico {
         this.mensaje = datos.mensaje();
         this.activo = true;
     }
+
+    public void actualizarInformacion(@Valid DatosActualizacionTopico datos) {
+        if (datos.titulo() != null){
+            this.titulo = datos.titulo();
+        }
+
+        if (datos.nombreCurso() != null){
+            this.nombreCurso = datos.nombreCurso();
+        }
+
+        if (datos.mensaje() != null){
+            this.mensaje = datos.mensaje();
+        }
+    }
 }
