@@ -1,6 +1,7 @@
 package alura.foro.hub.controller;
 
 
+import alura.foro.hub.domain.ValidacionException;
 import alura.foro.hub.domain.topico.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -25,6 +26,11 @@ public class TopicoController {
     @Transactional
     @PostMapping
     public ResponseEntity resgitrarTopico(@RequestBody @Valid DatosRegistrarTopico datos, UriComponentsBuilder uriP){
+
+        if (repository.existsByTituloIgnoreCaseAndMensajeIgnoreCase(datos.titulo(), datos.mensaje())) {
+            throw new ValidacionException("Ya existe un tópico con este título y mensaje (aunque cambies mayúsculas/minúsculas)");
+        }
+
         var topico = new Topico(datos);
 
         repository.save(topico);
@@ -61,6 +67,21 @@ public class TopicoController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity eliminarTopico(@PathVariable Long id){
+        var optionalTopico = repository.findById(id);
+
+        if (optionalTopico.isPresent()) {
+            var topico = optionalTopico.get();
+            topico.eliminar();
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+
     }
 
 }

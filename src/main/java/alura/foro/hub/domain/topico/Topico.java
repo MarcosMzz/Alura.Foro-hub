@@ -55,4 +55,8 @@ public class Topico {
             this.mensaje = datos.mensaje();
         }
     }
+
+    public void eliminar() {
+        this.activo = false;
+    }
 }

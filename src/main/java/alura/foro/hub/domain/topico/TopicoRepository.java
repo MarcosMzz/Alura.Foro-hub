@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
     Page<Topico> findAllByActivoTrue(Pageable paginacion);
+
+    boolean existsByTituloIgnoreCaseAndMensajeIgnoreCase(String titulo, String mensaje);
 }
