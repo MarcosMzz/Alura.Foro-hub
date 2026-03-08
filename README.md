@@ -158,18 +158,18 @@ foro_hub
 
 4️⃣ Ejecutar la aplicación
 
-Desde el IDE o mediante Maven:
--./mvnw spring-boot:run
-Flyway se encargará automáticamente de ejecutar las migraciones de la base de datos.
+Desde el IDE o mediante Maven:  
+./mvnw spring-boot:run  
+Flyway se encargará automáticamente de ejecutar las migraciones de la base de datos.  
 
 📂 Estructura del proyecto
--El proyecto sigue una arquitectura organizada en capas:
-controller
-service
-repository
-domain
-infra
-Esto facilita el mantenimiento, la escalabilidad y la separación de responsabilidades dentro de la aplicación.
+-El proyecto sigue una arquitectura organizada en capas:  
+controller  
+service  
+repository  
+domain  
+infra  
+Esto facilita el mantenimiento, la escalabilidad y la separación de responsabilidades dentro de la aplicación.  
 
 👨‍💻 Autor
 Desarrollado con ❤️ por Marcos Santino Mazzanti
